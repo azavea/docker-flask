@@ -8,12 +8,10 @@ RUN \
           libc-dev \
           libevent-dev \
           linux-headers \
-          # musl-dev \
-          # python-dev \
       && apk add --no-cache postgresql-client \
       && pip install --no-cache-dir \
-        gunicorn==19.4.5 \
-        Flask==0.10.1 \
+        gunicorn==19.6.0 \
+        Flask==0.11 \
         gevent==1.1.1 \
       && apk del .build-deps
 
