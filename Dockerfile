@@ -1,20 +1,14 @@
-FROM python:2.7-alpine
+FROM python:2.7-slim
 
 MAINTAINER Azavea <systems@azavea.com>
 
 RUN \
-      apk add --no-cache --virtual .build-deps \
-          gcc \
-          libc-dev \
-          libevent-dev \
-          linux-headers \
-          # musl-dev \
-          # python-dev \
-      && apk add --no-cache postgresql-client \
+      apt-get update && apt-get install -y --no-install-recommends \
+          build-essential \
       && pip install --no-cache-dir \
-        gunicorn==19.4.5 \
-        Flask==0.10.1 \
-        gevent==1.1.1 \
-      && apk del .build-deps
+         gunicorn==19.6.0 \
+         Flask==0.11 \
+         gevent==1.1.1 \
+      && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["gunicorn"]
