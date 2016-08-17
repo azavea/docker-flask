@@ -23,9 +23,9 @@ Then, run the container:
 ```bash
 $ docker run --rm --entrypoint pip quay.io/azavea/flask:latest freeze
 click==6.6
-Flask==0.11
+Flask==0.11.1
 gevent==1.1.1
-greenlet==0.4.9
+greenlet==0.4.10
 gunicorn==19.6.0
 itsdangerous==0.24
 Jinja2==2.8
