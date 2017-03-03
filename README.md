@@ -1,34 +1,19 @@
 # docker-flask
 
-[![Docker Repository on Quay.io](https://quay.io/repository/azavea/flask/status "Docker Repository on Quay.io")](https://quay.io/repository/azavea/flask)
-[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/azavea/docker-flask/blob/develop/LICENSE)
-
-A `Dockerfile` based off of [`python:2.7-slim`](https://registry.hub.docker.com/_/python/) that installs dependencies for a Flask project with Gunicorn as the application server.
-
-Includes:
-
-  - Gevent
-  - Gunicorn
+This repository contains a collection of templated `Dockerfile` for image variants designed to support Flask through the Gunicorn WSGI HTTP server.
 
 ## Usage
 
-First, build the container image:
+### Template Variables
+
+- `PYTHON_VERSION` - Python interpreter version
+- `VARIANT` - Base container image variant
+
+### Testing
+
+An example of how to use `cibuild` to build and test an image:
 
 ```bash
-$ docker build -t quay.io/azavea/flask:latest .
-```
-
-Then, run the container:
-
-```bash
-$ docker run --rm --entrypoint pip quay.io/azavea/flask:latest freeze
-click==6.6
-Flask==0.11.1
-gevent==1.1.1
-greenlet==0.4.10
-gunicorn==19.6.0
-itsdangerous==0.24
-Jinja2==2.8
-MarkupSafe==0.23
-Werkzeug==0.11.10
+$ CI=1 VERSION=0.12 PYTHON_VERSION=2.7 VARIANT=alpine \
+  ./scripts/cibuild
 ```
