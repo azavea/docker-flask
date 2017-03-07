@@ -1,0 +1,15 @@
+FROM python:%%PYTHON_VERSION%%-alpine
+
+MAINTAINER Azavea <systems@azavea.com>
+
+COPY requirements.txt /tmp/
+
+RUN set -ex \
+    && apk add --no-cache --virtual .build-deps \
+       g++ \
+       gcc \
+    && pip install --no-cache-dir -r /tmp/requirements.txt \
+    && apk del .build-deps \
+    && rm -rf /tmp/requirements.txt
+
+ENTRYPOINT ["/usr/local/bin/gunicorn"]
