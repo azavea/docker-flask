@@ -20,5 +20,9 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     else
         docker \
             run --rm "quay.io/azavea/flask:$VERSION-python$PYTHON_VERSION-$VARIANT" --version
+
+        docker \
+            run --rm --entrypoint pip \
+            "quay.io/azavea/flask:$VERSION-python$PYTHON_VERSION-$VARIANT" freeze | grep "Flask==${VERSION}"
     fi
 fi
