@@ -14,6 +14,6 @@ This repository contains a collection of templated `Dockerfile` for image varian
 An example of how to use `cibuild` to build and test an image:
 
 ```bash
-$ CI=1 VERSION=1.0 PYTHON_VERSION=3.7 VARIANT=alpine \
+$ CI=1 VERSION=1.1 PYTHON_VERSION=3.7 VARIANT=alpine \
   ./scripts/cibuild
 ```
